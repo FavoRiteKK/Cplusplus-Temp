@@ -33,55 +33,9 @@ int roundUpPower2(int x) {
     return x + 1;
 }
 
-void shout(const char *data)
-{
-	cout << sizeof(*data) << ": ";
-	
-	while (*data)
-	{
-		int ch = *data;
-		cout << hex << ch << ", ";
-		data++;
-	}
-	
-	cout << '\n';
-}
-
-void shout(const wchar_t *data)
-{
-	cout << sizeof(*data) << ": ";
-	while (*data)
-	{
-		int hi = (*data & 0xFF00) >> 8;
-		int lo = (*data & 0x00FF);
-		cout << hex << hi << " - " << lo << ", ";
-		data++;
-	}
-	
-	cout << '\n';
-}
-
 int main(int argc, char **argv)
 {
-	wstring s = L"bái";
-	string sub = "bai";
-
-	cout << "wstring: ";
-	shout(s.c_str());
-	
-	cout << "string: ";
-	shout(sub.c_str());
-	
-	cout << "wstring converted: ";
-	char *des = new char[10];
-	wcstombs(des, s.c_str(), 10);
-	shout(des);
-	
-	// unsigned int loc = s.find(sub);
-	// if (loc != string::npos)
-		// cout << "Found at " << loc << '\n';
-	// else cout << "! Found\n";
-	
+	int **p = new int*[8];
 	return 0;
 }
 
