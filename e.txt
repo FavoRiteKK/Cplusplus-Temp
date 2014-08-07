@@ -1,0 +1,14 @@
+w.cpp: In member function 'virtual void Rect::collide(Object*)':
+w.cpp:43:15: error: 'virtual void Object::collide(int, int, int, int)' is protected
+  virtual void collide(int x, int y, int w, int h)
+               ^
+w.cpp:69:24: error: within this context
+   o->collide(x, y, w, h);
+                        ^
+w.cpp: In member function 'virtual void Circle::collide(Object*)':
+w.cpp:48:15: error: 'virtual void Object::collide(int, int, int)' is protected
+  virtual void collide(int x, int y, int rad)
+               ^
+w.cpp:85:21: error: within this context
+   o->collide(x, y, r);
+                     ^

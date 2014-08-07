@@ -6,6 +6,9 @@
 #include <cassert>
 #include <cstdlib>
 
+#include "init.h"
+#include "my.h"
+
 using std::cout;
 using std::wcout;
 using std::cin;
@@ -33,9 +36,76 @@ int roundUpPower2(int x) {
     return x + 1;
 }
 
+class Object
+{
+protected:
+	int x, y;
+	virtual void collide(int x, int y, int w, int h)
+	{
+		cout << "Base rect\n";
+	}
+	
+	virtual void collide(int x, int y, int rad)
+	{
+		cout << "Base cir\n";
+	}
+	
+public:	
+	virtual void collide(Object *o) = 0;
+};
+
+class Rect : public Object
+{
+	int w, h;
+		
+public:
+	void collide(int x, int y, int rad)
+	{
+		cout << "Rect cir\n";
+	}
+	
+	void collide(Object *o)
+	{
+		o->collide(x, y, w, h);
+	}
+};
+
+class Circle : public Object
+{
+	int r;
+	
+public:
+	void collide(int x, int y, int w, int h)
+	{
+		cout << "Circle rect\n";
+	}
+	
+	void collide(Object *o)
+	{
+		o->collide(x, y, r);
+	}
+};
+
+class Util
+{
+public:
+	void func(Object *a, Object *b)
+	{
+		a->collide(b);
+	}
+
+};
+
 int main(int argc, char **argv)
 {
-	int **p = new int*[8];
+	Util u;
+	Object *a = new Rect();
+	Object *b = new Circle();
+	u.func(a, b);
+	u.func(b, a);
+	u.func(b, b);
+	
+	system("pause");
 	return 0;
 }
 

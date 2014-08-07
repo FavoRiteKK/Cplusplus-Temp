@@ -1,1 +1,1 @@
-g++ --static w.cpp 2> e.txt
+g++ -g --static w.cpp 2> e.txt
